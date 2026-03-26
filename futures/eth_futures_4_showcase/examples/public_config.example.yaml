@@ -1,0 +1,19 @@
+﻿strategy:
+  name: eth_futures_4_showcase
+  market: ETHUSDT perpetual
+  timeframe: 5m
+  execution_mode: backtest_only_public
+
+risk:
+  initial_capital: 1000
+  fee_rate: 0.0008
+  slippage_bps: 5
+  max_position_fraction: 0.3
+
+validation:
+  walk_forward: true
+  stress_test: true
+  monte_carlo: false
+
+notes:
+  production signal rules and tuned presets are intentionally redacted

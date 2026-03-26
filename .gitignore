@@ -1,0 +1,43 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+
+# Virtual env
+.venv/
+venv/
+
+# Secrets
+.env
+*.env
+secrets/
+credentials/
+
+# Runtime state and logs
+state/
+live/
+logs/
+*.log
+
+# Exchange / infra / deployment
+**/deploy/
+**/systemd/
+**/ssh/
+
+# Outputs: keep only curated examples
+result/
+reports/private/
+data/raw/
+data/private/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

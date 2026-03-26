@@ -1,0 +1,13 @@
+﻿{
+  "strategy": "eth_futures_4_showcase",
+  "market": "ETHUSDT perpetual",
+  "period": "example_only",
+  "metrics": {
+    "final_equity": "redacted_example",
+    "profit_factor": "example_field",
+    "max_drawdown_pct": "example_field",
+    "trade_count": "example_field",
+    "win_rate_pct": "example_field"
+  },
+  "note": "Values intentionally omitted in public version. This file documents report structure only."
+}

@@ -1,0 +1,2 @@
+﻿entry_time,exit_time,side,entry_price,exit_price,qty,pnl,fee,holding_minutes,exit_reason
+2025-01-01 12:00:00,2025-01-01 14:30:00,LONG,example,example,example,example,example,150,TIME_STOP
