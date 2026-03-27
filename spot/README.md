@@ -1,9 +1,13 @@
 ﻿# Spot Showcases
 
-Public spot strategy showcases live here.
+This folder contains the public-facing spot strategy showcase from the private Binance trading system.
 
-Use this area for:
-- inventory logic / allocation concepts
-- backtest summary samples
-- simplified research notes
-- non-sensitive execution assumptions
+Currently included:
+- `eth_spot_showcase`
+
+This showcase focuses on:
+- fixed-grid spot inventory logic
+- separation between backtest and live execution code
+- startup inventory bootstrap rules
+- stateful execution and trade logging design
+- public-safe deployment and notification interfaces

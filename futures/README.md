@@ -2,9 +2,12 @@
 
 Each subfolder is a public-facing summary of a private futures research branch.
 
-Recommended contents:
+Currently retained in the public repository:
+- `eth_futures_4_showcase`
+
+This area focuses on:
 - strategy objective
-- timeframe and market
+- market and timeframe boundaries
 - validation method
 - sample reports
 - simplified config format

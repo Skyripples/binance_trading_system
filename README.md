@@ -1,4 +1,4 @@
-# Binance Trading System
+﻿# Binance Trading System
 
 Public portfolio version of a larger private trading research system focused on Binance markets.
 
@@ -42,7 +42,6 @@ binance_trading_system/
   docs/
   futures/
     eth_futures_4_showcase/
-    eth_futures_7_showcase/
   spot/
     eth_spot_showcase/
   shared/
@@ -57,7 +56,7 @@ binance_trading_system/
   Futures strategy showcase folders. Each showcase is meant to explain system structure, validation approach, and report shape without exposing production logic.
 
 - `spot/`
-  Spot strategy showcase folders. This area is reserved for public-safe spot strategy presentations as they are prepared.
+  Spot strategy showcase folders. This area highlights public-safe versions of spot inventory and execution workflows.
 
 - `shared/`
   Shared concepts and reusable public-facing abstractions such as config patterns, reporting formats, and interface boundaries.
@@ -74,6 +73,17 @@ Public materials included:
 - sample report schema
 - sample trade log schema
 - runner stub for demonstration
+
+### `spot/eth_spot_showcase`
+
+This showcase represents the current ETH spot strategy branch.
+
+Public materials included:
+- live / backtest architecture split
+- startup inventory bootstrap concept
+- public-safe env example
+- sample live state and trade log schemas
+- sanitized runner stub
 
 ## Validation Philosophy
 
@@ -102,6 +112,5 @@ It is not intended to be used as a plug-and-play live trading bot.
 If you are reviewing this repository for interview or collaboration purposes, the best place to start is:
 
 1. `futures/eth_futures_4_showcase/README.md`
-2. `futures/eth_futures_4_showcase/docs/architecture.md`
+2. `spot/eth_spot_showcase/README.md`
 3. `docs/redaction_policy.md`
-
