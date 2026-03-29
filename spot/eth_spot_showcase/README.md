@@ -2,65 +2,61 @@
 
 Public portfolio version of the current ETH spot strategy branch.
 
-This strategy is intentionally simpler than the private futures stack and is designed around a stateful spot inventory process instead of leveraged directional exposure.
+This showcase mirrors the private project structure more closely and now exposes two public-safe files:
+- `src/eth_spot_live_showcase.py`
+- `src/eth_spot_backtest_showcase.py`
 
 ## Public Strategy Summary
 
-Core behavior shown in this public version:
+Core behavior represented in this public version:
 - startup inventory bootstrap to a target ETH base position
 - fixed USD grid spacing for recurring buy / sell execution
-- state persistence for long-running execution
+- persistent anchor-based state for long-running spot execution
 - trade log output for operational review
-- optional Telegram notifications for live events
-- clear separation between backtest and live runner responsibilities
+- Telegram-style notification payload design
+- separation between backtest research and live execution code paths
 
-## Private / Redacted Boundaries
+## What Is Intentionally Redacted
 
 The following are intentionally excluded from the public repository:
-- API keys and environment secrets
-- exact server deployment credentials
-- production account state and real trade logs
-- full operational hardening details
-- production-specific safeguards and recovery playbooks
+- exchange API keys and secrets
+- real Telegram credentials
+- production Binance order routing details
+- exact private trading rules and tuned strategy thresholds
+- private server deployment specifics
+- real account logs and real execution journals
 
 ## Repository Mapping
 
-The private project keeps two separate files for this strategy line:
-- `eth_spot_backtest.py`: backtest and validation workflow
+Private project split:
+- `eth_spot_backtest.py`: research and backtest workflow
 - `eth_spot.py`: live spot executor
 
-The public showcase mirrors that split conceptually, while keeping the implementation sanitized.
+Public showcase split:
+- `src/eth_spot_backtest_showcase.py`: public-safe backtest skeleton
+- `src/eth_spot_live_showcase.py`: public-safe live execution skeleton
 
-## Live Execution Model
+## Current Live Behavior Represented
 
-High-level live flow:
-1. load environment and exchange metadata
-2. verify account connectivity
+The live branch currently follows this high-level flow:
+1. load env-driven runtime config
+2. verify exchange connectivity and symbol filters
 3. top up startup inventory to a target ETH amount if needed
-4. establish or restore grid anchor state
-5. place spot market buys on downward grid breaks
-6. place spot market sells on upward grid breaks
-7. persist state and append trade logs
-8. send notifications for startup, trades, and errors
+4. restore or initialize grid anchor state
+5. buy once per lower grid break
+6. sell once per upper grid break
+7. persist state and append trade records
+8. emit notifications for boot, startup buy, grid buys, grid sells, and errors
 
-## Backtest Model
+## Notification Fields Represented
 
-High-level backtest flow:
-1. load merged historical spot bars
-2. compute basic volatility and range context
-3. simulate startup inventory bootstrap
-4. simulate grid buys and sells with fees
-5. generate trade log, equity curve, and summary output
-
-## Public Files In This Showcase
-
-- `docs/architecture.md`
-- `examples/public_env.example`
-- `examples/sample_trade_log.csv`
-- `examples/sample_live_state.json`
-- `examples/sample_backtest_summary.json`
-- `src/live_runner_stub.py`
+The public showcase reflects the notification shape used in the private project:
+- startup USDT / ETH balances
+- current USDT / ETH balances
+- fee summary
+- current profit in USDT on sell-side notifications
+- anchor transition and trigger price context
 
 ## Portfolio Use
 
-This folder is intended for interview discussion and code review. It is not a plug-and-play live trading bot.
+This folder is intended for interview discussion and engineering review. It is not a plug-and-play live trading bot.
