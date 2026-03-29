@@ -1,62 +1,87 @@
-﻿# ETH Spot Showcase
+# ETH Spot Showcase
 
 Public portfolio version of the current ETH spot strategy branch.
 
-This showcase mirrors the private project structure more closely and now exposes two public-safe files:
-- `src/eth_spot_live_showcase.py`
-- `src/eth_spot_backtest_showcase.py`
+This showcase is intentionally built around a simple but operationally useful idea: maintain a base ETH inventory, trade around it with fixed grid spacing, and preserve enough state that the strategy can run continuously instead of behaving like a one-shot backtest.
 
-## Public Strategy Summary
+## What This Showcase Represents
 
-Core behavior represented in this public version:
-- startup inventory bootstrap to a target ETH base position
+The private strategy behind this showcase currently centers on:
+
+- bootstrapping to a target ETH inventory at startup
 - fixed USD grid spacing for recurring buy / sell execution
-- persistent anchor-based state for long-running spot execution
-- trade log output for operational review
-- Telegram-style notification payload design
-- separation between backtest research and live execution code paths
+- anchor-based logic so the same price zone is not repeatedly traded without a new level transition
+- persistent state for long-running operation
+- trade logging and notification payloads designed for live monitoring
+- separate live and backtest entry points
+
+This public folder keeps that structure visible while removing sensitive execution details.
+
+## Private-To-Public Mapping
+
+Private project:
+- `eth_spot.py`
+  Live spot executor
+- `eth_spot_backtest.py`
+  Backtest and strategy evaluation workflow
+
+Public showcase:
+- `src/eth_spot_live_showcase.py`
+  Public-safe live execution skeleton
+- `src/eth_spot_backtest_showcase.py`
+  Public-safe backtest skeleton
+
+## Live Workflow Represented Here
+
+The live branch is modeled as this sequence:
+
+1. load runtime config from environment variables
+2. validate exchange connectivity and symbol filters
+3. check current inventory and top up to the target ETH amount if needed
+4. restore or initialize anchor/state
+5. trigger a single buy on a lower grid transition
+6. trigger a single sell on an upper grid transition
+7. persist updated state
+8. append trade records
+9. emit Telegram-style operational notifications
+
+## Why This Is Interesting From A Systems Perspective
+
+This strategy is intentionally simpler than the futures research branches, but it highlights a different engineering problem set:
+
+- inventory-aware trading instead of flat/position-flip logic
+- startup bootstrap behavior
+- durable state for 24/7 execution
+- integration between execution, logging, and operator notifications
+- clear distinction between research code and production-safe runtime logic
+
+That makes it a useful example for discussing how a small strategy becomes a maintainable system.
+
+## Public Examples Included
+
+- public environment schema
+- sample backtest summary
+- sample live state file
+- sample trade log schema
+- public-safe live and backtest runner stubs
 
 ## What Is Intentionally Redacted
 
-The following are intentionally excluded from the public repository:
-- exchange API keys and secrets
+This public repository does not include:
+
+- exchange API keys or secrets
 - real Telegram credentials
-- production Binance order routing details
-- exact private trading rules and tuned strategy thresholds
-- private server deployment specifics
-- real account logs and real execution journals
-
-## Repository Mapping
-
-Private project split:
-- `eth_spot_backtest.py`: research and backtest workflow
-- `eth_spot.py`: live spot executor
-
-Public showcase split:
-- `src/eth_spot_backtest_showcase.py`: public-safe backtest skeleton
-- `src/eth_spot_live_showcase.py`: public-safe live execution skeleton
-
-## Current Live Behavior Represented
-
-The live branch currently follows this high-level flow:
-1. load env-driven runtime config
-2. verify exchange connectivity and symbol filters
-3. top up startup inventory to a target ETH amount if needed
-4. restore or initialize grid anchor state
-5. buy once per lower grid break
-6. sell once per upper grid break
-7. persist state and append trade records
-8. emit notifications for boot, startup buy, grid buys, grid sells, and errors
-
-## Notification Fields Represented
-
-The public showcase reflects the notification shape used in the private project:
-- startup USDT / ETH balances
-- current USDT / ETH balances
-- fee summary
-- current profit in USDT on sell-side notifications
-- anchor transition and trigger price context
+- production Binance order-routing details
+- exact live signal thresholds or tuned private presets
+- private infrastructure/deployment configuration
+- real account logs or execution journals
 
 ## Portfolio Use
 
-This folder is intended for interview discussion and engineering review. It is not a plug-and-play live trading bot.
+This folder is intended for:
+
+- interview review
+- architecture discussion
+- portfolio reading
+
+It is not a plug-and-play live trading bot.

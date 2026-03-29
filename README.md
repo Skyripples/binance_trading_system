@@ -1,39 +1,27 @@
-﻿# Binance Trading System
+# Binance Trading System
 
-Public portfolio version of a larger private trading research system focused on Binance markets.
+Public portfolio version of a larger private Binance trading research system.
 
-This repository is designed for interviews and technical review. It showcases how I structure strategy research, backtesting, risk controls, and execution boundaries without exposing production-sensitive logic.
+This repository is meant for technical review, interviews, and engineering discussion. It focuses on how the system is structured, validated, and operated without exposing live credentials, production alpha, or deployment-sensitive details.
 
-## Scope
+## What This Repository Shows
 
-The private system behind this portfolio includes:
-- futures strategy research
-- spot strategy research
-- backtest and validation workflows
-- execution abstractions for paper / testnet / live modes
-- reporting, stress testing, and operational tooling
+- strategy-oriented project structure
+- separation between backtest, paper/testnet, and live execution concerns
+- reusable boundaries for config, state, reporting, and notifications
+- cost-aware trading system design
+- public-safe examples of research artifacts and execution interfaces
 
-This public version keeps the engineering structure and documentation, while removing sensitive details.
+## What Is Deliberately Not Public
 
-## What This Repository Demonstrates
+To keep the portfolio safe, this repository excludes:
 
-- strategy-oriented project organization
-- reusable module boundaries for data, signals, risk, execution, and reporting
-- separation between research code and production deployment
-- cost-aware validation mindset
-- portfolio-safe examples of configs, reports, and runner interfaces
-
-## What Is Intentionally Excluded
-
-To keep the repository safe for public release, the following are not included:
-
-- exchange API keys, secrets, and environment files
-- Telegram / notification credentials
-- server deployment details and SSH / infrastructure configs
-- live order routing implementation details
-- production signal formulas and alpha logic
-- tuned production parameter presets
-- real account state, private logs, and private datasets
+- API keys, secrets, and `.env` files
+- Telegram credentials and operational bot settings
+- server infrastructure, SSH, and deployment details
+- private execution adapters and live order routing internals
+- production signal formulas and tuned parameter sets
+- private logs, account state, and proprietary datasets
 
 ## Repository Layout
 
@@ -47,70 +35,54 @@ binance_trading_system/
   shared/
 ```
 
-### Folder Summary
+## Showcase Overview
 
-- `docs/`
-  Portfolio-level documentation, including redaction policy and public design notes.
+### Futures
 
-- `futures/`
-  Futures strategy showcase folders. Each showcase is meant to explain system structure, validation approach, and report shape without exposing production logic.
+`futures/eth_futures_4_showcase`
 
-- `spot/`
-  Spot strategy showcase folders. This area highlights public-safe versions of spot inventory and execution workflows.
+A lower-frequency ETHUSDT perpetual futures branch focused on:
+- strategy architecture
+- validation/reporting shape
+- public-safe config and runner structure
 
-- `shared/`
-  Shared concepts and reusable public-facing abstractions such as config patterns, reporting formats, and interface boundaries.
+### Spot
 
-## Current Public Showcase
+`spot/eth_spot_showcase`
 
-### `futures/eth_futures_4_showcase`
+An ETH spot inventory strategy branch focused on:
+- startup inventory bootstrap
+- anchor-based fixed-grid execution
+- state persistence for long-running operation
+- notification and trade-log design
+- clear separation between backtest and live code paths
 
-This showcase represents a lower-frequency ETHUSDT perpetual futures research branch.
+## Engineering Principles Behind The Private System
 
-Public materials included:
-- architecture note
-- public-safe config example
-- sample report schema
-- sample trade log schema
-- runner stub for demonstration
+The private system is built around the idea that a strategy is more than an entry condition. A usable trading system also needs:
 
-### `spot/eth_spot_showcase`
+- realistic cost assumptions
+- position sizing and capital discipline
+- durable state management
+- reporting that supports review and debugging
+- execution boundaries that reduce accidental live risk
 
-This showcase represents the current ETH spot strategy branch.
+This public repository keeps those engineering principles visible even where exact implementation details are abstracted.
 
-Public materials included:
-- live / backtest architecture split
-- startup inventory bootstrap concept
-- public-safe env example
-- sample live state and trade log schemas
-- sanitized runner stub
+## Best Starting Points
 
-## Validation Philosophy
-
-The private system is built around the idea that a strategy is not just a signal formula. A usable trading system needs:
-
-- cost-aware backtesting
-- risk controls and position sizing discipline
-- regime awareness
-- walk-forward or out-of-sample validation
-- clean separation between research and execution layers
-
-This repository reflects that engineering approach, even where implementation details are intentionally abstracted.
-
-## Intended Use
-
-This repository is meant to be read as:
-
-- a portfolio project
-- an engineering showcase
-- a discussion artifact for interviews
-
-It is not intended to be used as a plug-and-play live trading bot.
-
-## Notes
-
-If you are reviewing this repository for interview or collaboration purposes, the best place to start is:
+If you are reviewing this repository, start here:
 
 1. `futures/eth_futures_4_showcase/README.md`
 2. `spot/eth_spot_showcase/README.md`
 3. `docs/redaction_policy.md`
+
+## Intended Audience
+
+This repository is intended to be read as:
+
+- a portfolio project
+- a systems-design discussion artifact
+- a trading-infrastructure engineering showcase
+
+It is not intended to be used as a plug-and-play live trading bot.
